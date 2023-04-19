@@ -1,15 +1,16 @@
 import { searchForShow } from "../helpers/showsHelper";
 import ShowList from "../components/ShowList";
-import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 function Search() {
-  const allShows = searchForShow("");
-  const [searchResults, setSearchResults] = useState(allShows);
+  const params = useParams();
+
+  const searchResults = searchForShow(params.searchText);
 
   return (
     <>
       <h1>Search</h1>
-      <input type="text" onChange={searchShows} />
+
       {searchResults.length > 0 ? (
         <ShowList shows={searchResults} />
       ) : (
@@ -17,11 +18,6 @@ function Search() {
       )}
     </>
   );
-
-  function searchShows(event) {
-    const searchText = event.target.value;
-    setSearchResults(searchForShow(searchText));
-  }
 }
 
 export default Search;
