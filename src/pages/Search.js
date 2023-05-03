@@ -5,14 +5,16 @@ import { useState, useEffect } from "react";
 
 function Search() {
   const params = useParams();
+
   const [searchResults, setSearchResults] = useState([]);
+
   useEffect(() => {
     const fetchResults = async () => {
       const shows = await searchForShow(params.searchText);
       setSearchResults(shows);
     };
     fetchResults();
-  });
+  }, [params.searchText]);
   return (
     <>
       <h1>Search</h1>
