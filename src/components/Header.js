@@ -27,7 +27,7 @@ function Header() {
       </ul>
 
       <div className="Search">
-        <input type="text" onChange={handleSearch} />
+        <input className="input" type="text" onChange={handleSearch} />
       </div>
     </div>
   );

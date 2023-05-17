@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { getShowByID } from "../helpers/showsHelper";
 import NotFound from "./NotFound";
 import { useEffect, useState } from "react";
+import showsData from "../shows-data";
 
 function ShowPage() {
   const { showID } = useParams();
@@ -26,6 +27,10 @@ function ShowPage() {
           <h2>Language: {show.language}</h2>
           <h3>Rating: {show.rating.average}</h3>
           <h3>Genres: {show.genres.join(", ")}</h3>
+          {!!show._embedded.cast &&
+            show._embedded.cast.map((member) => (
+              <div>{member.person.name + " as " + member.character.name}</div>
+            ))}
         </div>
       ) : (
         <NotFound />
