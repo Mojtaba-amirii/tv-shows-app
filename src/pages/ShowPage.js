@@ -16,6 +16,14 @@ function ShowPage() {
     fetchShow();
   }, [showID]);
 
+  const addFavorite = () => {
+    const existingFavorites = JSON.parse(
+      localStorage.getItem("favorites") || "[]"
+    );
+    const favorites = JSON.stringify([showID, ...existingFavorites]);
+    localStorage.setItem("favorites", favorites);
+  };
+
   if (!show) return <NotFound />;
 
   return (
@@ -31,6 +39,7 @@ function ShowPage() {
             show._embedded.cast.map((member) => (
               <div>{member.person.name + " as " + member.character.name}</div>
             ))}
+          <button onClick={addFavorite}>Add to favorites</button>
         </div>
       ) : (
         <NotFound />
