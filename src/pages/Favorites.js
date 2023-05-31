@@ -8,8 +8,8 @@ function Favorites() {
 
   useEffect(() => {
     const fetchShows = async () => {
-      const Promises = favorites.map((favorite) => getShowByID(favorite));
-      const shows = await Promise.all(Promises);
+      const promises = favorites.map((favorite) => getShowByID(favorite));
+      const shows = await Promise.all(promises);
       setShows(shows);
     };
     fetchShows();

@@ -2,11 +2,18 @@ import { useParams } from "react-router-dom";
 import { getShowByID } from "../helpers/showsHelper";
 import NotFound from "./NotFound";
 import { useEffect, useState } from "react";
-import showsData from "../shows-data";
 
 function ShowPage() {
   const { showID } = useParams();
   const [show, setShow] = useState(undefined);
+
+  const existingFavorites = JSON.parse(
+    localStorage.getItem("favorites") || "[]"
+  );
+
+  const [isFavorited, setIsFavorited] = useState(
+    existingFavorites.includes(showID)
+  );
 
   useEffect(() => {
     const fetchShow = async () => {
@@ -16,11 +23,21 @@ function ShowPage() {
     fetchShow();
   }, [showID]);
 
-  const addFavorite = () => {
+  const toggleFavorite = () => {
     const existingFavorites = JSON.parse(
       localStorage.getItem("favorites") || "[]"
     );
-    const favorites = JSON.stringify([showID, ...existingFavorites]);
+
+    let newFavorites = [];
+
+    if (existingFavorites.includes(showID)) {
+      newFavorites = existingFavorites.filter((id) => id !== showID);
+      setIsFavorited(false);
+    } else {
+      newFavorites = [showID, ...existingFavorites];
+      setIsFavorited(true);
+    }
+    const favorites = JSON.stringify(newFavorites);
     localStorage.setItem("favorites", favorites);
   };
 
@@ -39,7 +56,9 @@ function ShowPage() {
             show._embedded.cast.map((member) => (
               <div>{member.person.name + " as " + member.character.name}</div>
             ))}
-          <button onClick={addFavorite}>Add to favorites</button>
+          <button onClick={toggleFavorite}>
+            {isFavorited ? "Remove Favorite" : "Add to Favorite"}
+          </button>
         </div>
       ) : (
         <NotFound />
