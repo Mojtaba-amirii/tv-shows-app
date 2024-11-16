@@ -48,7 +48,7 @@ function ShowPage() {
       {!!show ? (
         <div className="ShowPage">
           <h1>{show.name}</h1>
-          <img src={show.image.medium} />
+          <img src={show.image.medium} alt={show.name} />
           <h2>Language: {show.language}</h2>
           <h3>Rating: {show.rating.average}</h3>
           <h3>Genres: {show.genres.join(", ")}</h3>
@@ -66,4 +66,5 @@ function ShowPage() {
     </>
   );
 }
+
 export default ShowPage;

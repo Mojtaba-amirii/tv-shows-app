@@ -13,7 +13,7 @@ function Favorites() {
       setShows(shows);
     };
     fetchShows();
-  }, []);
+  }, [favorites]);
 
   return (
     <div>

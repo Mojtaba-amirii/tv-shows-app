@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 
 function Search() {
   const params = useParams();
-
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
@@ -15,6 +14,7 @@ function Search() {
     };
     fetchResults();
   }, [params.searchText]);
+
   return (
     <>
       <h1>Search</h1>

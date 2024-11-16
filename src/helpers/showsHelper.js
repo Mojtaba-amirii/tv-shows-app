@@ -1,5 +1,3 @@
-import showsData from "../shows-data";
-
 const defaultImg = { medium: " https://via.placeholder.com/210x295?text=:(" };
 
 function transformShow(show) {

@@ -583,6 +583,6 @@ const showsData = [
         "https://static.tvmaze.com/uploads/images/original_untouched/38/95017.jpg",
     },
   },
-]
+];
 
-export default showsData
+export default showsData;
