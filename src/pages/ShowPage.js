@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 function ShowPage() {
   const { showID } = useParams();
-  const [show, setShow] = useState(undefined);
+  const [show, setShow] = useState(null);
 
   const existingFavorites = JSON.parse(
     localStorage.getItem("favorites") || "[]"
@@ -37,33 +37,28 @@ function ShowPage() {
       newFavorites = [showID, ...existingFavorites];
       setIsFavorited(true);
     }
-    const favorites = JSON.stringify(newFavorites);
-    localStorage.setItem("favorites", favorites);
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
   };
 
   if (!show) return <NotFound />;
 
   return (
-    <>
-      {!!show ? (
-        <div className="ShowPage">
-          <h1>{show.name}</h1>
-          <img src={show.image.medium} alt={show.name} />
-          <h2>Language: {show.language}</h2>
-          <h3>Rating: {show.rating.average}</h3>
-          <h3>Genres: {show.genres.join(", ")}</h3>
-          {!!show._embedded.cast &&
-            show._embedded.cast.map((member) => (
-              <div>{member.person.name + " as " + member.character.name}</div>
-            ))}
-          <button onClick={toggleFavorite}>
-            {isFavorited ? "Remove Favorite" : "Add to Favorite"}
-          </button>
-        </div>
-      ) : (
-        <NotFound />
-      )}
-    </>
+    <div className="ShowPage">
+      <h1>{show.name}</h1>
+      <img src={show.image.medium} alt={show.name} />
+      <h2>Language: {show.language}</h2>
+      <h3>Rating: {show.rating.average}</h3>
+      <h3>Genres: {show.genres.join(", ")}</h3>
+      {!!show._embedded.cast &&
+        show._embedded.cast.map((member) => (
+          <div key={member.person.id}>
+            {member.person.name + " as " + member.character.name}
+          </div>
+        ))}
+      <button onClick={toggleFavorite}>
+        {isFavorited ? "Remove Favorite" : "Add to Favorite"}
+      </button>
+    </div>
   );
 }
 
