@@ -1,18 +1,25 @@
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function Header() {
+  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
-  function handleSearch(event) {
-    if (event.target.value.trim() === "") {
+
+  useEffect(() => {
+    if (searchValue.trim() === "") {
       navigate("/");
     } else {
-      navigate("/search/" + event.target.value.trim());
+      navigate("/search/" + searchValue.trim());
     }
+  }, [searchValue, navigate]);
+
+  function handleSearch(event) {
+    setSearchValue(event.target.value);
   }
+
   return (
     <div className="Header">
-      <div className="Logo"></div>
+      <div className="Logo" aria-label="Logo"></div>
 
       <ul className="Navigation" id="Menu">
         <li>
@@ -27,7 +34,13 @@ function Header() {
       </ul>
 
       <div className="Search">
-        <input className="input" type="text" onChange={handleSearch} />
+        <input
+          className="input"
+          type="text"
+          value={searchValue}
+          onChange={handleSearch}
+          aria-label="Search"
+        />
       </div>
     </div>
   );

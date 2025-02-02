@@ -1,13 +1,23 @@
+import React from "react";
+import PropTypes from "prop-types";
 import Show from "./Show";
 
-function ShowList(props) {
+function ShowList({ shows = [] }) {
   return (
     <div className="ShowList">
-      {props.shows.map((x) => (
-        <Show key={x.id} showObject={x} />
+      {shows.map((show) => (
+        <Show key={show.id} showObject={show} />
       ))}
     </div>
   );
 }
+
+ShowList.propTypes = {
+  shows: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    })
+  ),
+};
 
 export default ShowList;

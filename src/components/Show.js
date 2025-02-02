@@ -1,15 +1,13 @@
 import { Link } from "react-router-dom";
 
-function Show(props) {
+function Show({ showObject }) {
+  const { id, image, name } = showObject;
+
   return (
-    <Link to={"/show/" + props.showObject.id}>
+    <Link to={`/show/${id}`}>
       <div className="Show">
-        <img
-          className="Show-image"
-          src={props.showObject.image.medium}
-          alt={props.showObject.name}
-        />
-        <h2>{props.showObject.name}</h2>
+        <img className="Show-image" src={image.medium} alt={name} />
+        <h2>{name}</h2>
       </div>
     </Link>
   );
