@@ -1,5 +1,3 @@
-import "./styles/App.css";
-
 import Home from "./pages/Home.jsx";
 import Search from "./pages/Search.jsx";
 import Upcoming from "./pages/Upcoming.jsx";
@@ -12,18 +10,20 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
+    <div className="min-h-screen bg-gray-50">
       <Router>
         <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="/upcoming" element={<Upcoming />} />
-          <Route path="/show/:showID" element={<ShowPage />} />
-          <Route path="/search/:searchText" element={<Search />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/upcoming" element={<Upcoming />} />
+            <Route path="/show/:showID" element={<ShowPage />} />
+            <Route path="/search/:searchText" element={<Search />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
       </Router>
     </div>
   );
