@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 function Show({ showObject }) {
   const { id, image, name } = showObject;
@@ -12,5 +13,15 @@ function Show({ showObject }) {
     </Link>
   );
 }
+
+Show.propTypes = {
+  showObject: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    image: PropTypes.shape({
+      medium: PropTypes.string.isRequired,
+    }).isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default Show;

@@ -1,4 +1,4 @@
-import ShowList from "../components/ShowList";
+import ShowList from "../components/ShowList.jsx";
 import { getHomeShows } from "../helpers/showsHelper";
 import { useEffect, useState } from "react";
 

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { getShowByID } from "../helpers/showsHelper";
-import NotFound from "./NotFound";
+import NotFound from "./NotFound.jsx";
 import { useEffect, useState } from "react";
 
 function ShowPage() {

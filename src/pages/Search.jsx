@@ -1,5 +1,5 @@
 import { searchForShow } from "../helpers/showsHelper";
-import ShowList from "../components/ShowList";
+import ShowList from "../components/ShowList.jsx";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 

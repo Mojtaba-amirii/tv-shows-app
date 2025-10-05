@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getShowByID } from "../helpers/showsHelper";
-import ShowList from "../components/ShowList";
+import ShowList from "../components/ShowList.jsx";
 
 function Favorites() {
   const [shows, setShows] = useState([]);

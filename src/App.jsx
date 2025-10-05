@@ -1,12 +1,12 @@
 import "./styles/App.css";
 
-import Home from "./pages/Home";
-import Search from "./pages/Search";
-import Upcoming from "./pages/Upcoming";
-import NotFound from "./pages/NotFound";
-import ShowPage from "./pages/ShowPage";
-import Header from "./components/Header";
-import Favorites from "./pages/Favorites";
+import Home from "./pages/Home.jsx";
+import Search from "./pages/Search.jsx";
+import Upcoming from "./pages/Upcoming.jsx";
+import NotFound from "./pages/NotFound.jsx";
+import ShowPage from "./pages/ShowPage.jsx";
+import Header from "./components/Header.jsx";
+import Favorites from "./pages/Favorites.jsx";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
