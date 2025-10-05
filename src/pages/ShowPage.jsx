@@ -50,8 +50,8 @@ function ShowPage() {
       <h3>Rating: {show.rating.average}</h3>
       <h3>Genres: {show.genres.join(", ")}</h3>
       {!!show._embedded.cast &&
-        show._embedded.cast.map((member) => (
-          <div key={member.person.id}>
+        show._embedded.cast.map((member, index) => (
+          <div key={`${member.person.id}-${member.character.id || index}`}>
             {member.person.name + " as " + member.character.name}
           </div>
         ))}
