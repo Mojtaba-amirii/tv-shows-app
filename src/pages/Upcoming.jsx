@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { searchForShow } from "../helpers/showsHelper";
+
 import ShowList from "../components/ShowList.jsx";
+import { searchForShow } from "../helpers/showsHelper";
 
 function Upcoming() {
   const [upcomingShows, setUpcomingShows] = useState([]);
@@ -29,7 +30,7 @@ function Upcoming() {
 
         setUpcomingShows(shows);
       } catch (err) {
-        setError("Failed to fetch upcoming shows");
+        setError(err.message || "Failed to fetch upcoming shows");
       } finally {
         setLoading(false);
       }
@@ -40,7 +41,7 @@ function Upcoming() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
         <div className="flex items-center justify-center min-h-[50vh]">
           <div className="text-center">
             <div className="relative">
@@ -59,7 +60,7 @@ function Upcoming() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
         <div className="flex items-center justify-center min-h-[50vh]">
           <div className="text-center p-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
@@ -94,9 +95,9 @@ function Upcoming() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-purple-600 via-purple-700 to-indigo-700">
+      <div className="bg-linear-to-r from-purple-600 via-purple-700 to-indigo-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full mb-6">

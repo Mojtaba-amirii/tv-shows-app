@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 export function LoadingSpinner({ message = "Loading...", subMessage = "" }) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
       <div className="flex items-center justify-center min-h-[50vh]">
         <div className="text-center">
           <div className="relative">
@@ -25,7 +25,7 @@ export function ErrorMessage({
   onRetry,
 }) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
       <div className="flex items-center justify-center min-h-[50vh]">
         <div className="text-center p-8">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">

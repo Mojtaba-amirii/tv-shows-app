@@ -23,13 +23,13 @@ function Header() {
   }
 
   return (
-    <header className="bg-gradient-to-r from-primary via-primary/90 to-secondary shadow-lg sticky top-0 z-50 backdrop-blur-sm">
+    <header className="bg-linear-to-r from-primary via-primary/90 to-secondary shadow-lg sticky top-0 z-50 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 hover:bg-white/20 transition-all duration-300">
-              <div className="w-8 h-8 bg-gradient-to-br from-white to-gray-100 rounded-md flex items-center justify-center">
+              <div className="w-8 h-8 bg-linear-to-br from-white to-gray-100 rounded-md flex items-center justify-center">
                 <svg
                   className="w-5 h-5 text-primary"
                   fill="currentColor"

@@ -1,6 +1,7 @@
+import { useEffect, useState } from "react";
+
 import ShowList from "../components/ShowList.jsx";
 import { getHomeShows } from "../helpers/showsHelper";
-import { useEffect, useState } from "react";
 
 function Home() {
   const [shows, setShows] = useState(undefined);
@@ -23,7 +24,7 @@ function Home() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
         <div className="flex items-center justify-center min-h-[50vh]">
           <div className="text-center">
             <div className="relative">
@@ -44,7 +45,7 @@ function Home() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
         <div className="flex items-center justify-center min-h-[50vh]">
           <div className="text-center p-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
@@ -79,14 +80,14 @@ function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-primary via-primary/90 to-secondary">
+      <div className="bg-linear-to-r from-primary via-primary/90 to-secondary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
               Discover Amazing
-              <span className="block bg-gradient-to-r from-accent to-white bg-clip-text text-transparent">
+              <span className="block bg-linear-to-r from-accent to-white bg-clip-text text-transparent">
                 TV Shows
               </span>
             </h1>

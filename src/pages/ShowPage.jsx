@@ -1,7 +1,8 @@
-import { useParams } from "react-router-dom";
-import { getShowByID } from "../helpers/showsHelper";
-import NotFound from "./NotFound.jsx";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
+import NotFound from "./NotFound.jsx";
+import { getShowByID } from "../helpers/showsHelper";
 
 function ShowPage() {
   const { showID } = useParams();
@@ -45,7 +46,7 @@ function ShowPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
         <div className="flex items-center justify-center min-h-[50vh]">
           <div className="text-center">
             <div className="relative">
@@ -65,12 +66,12 @@ function ShowPage() {
   if (!show) return <NotFound />;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Show Header */}
         <div className="bg-white rounded-2xl shadow-sm overflow-hidden mb-8">
           <div className="md:flex">
-            <div className="md:flex-shrink-0">
+            <div className="md:shrink-0">
               <img
                 className="h-96 w-full object-cover md:w-80"
                 src={show.image?.medium || show.image?.original}

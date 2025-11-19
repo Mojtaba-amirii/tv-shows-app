@@ -1,7 +1,8 @@
-import { searchForShow } from "../helpers/showsHelper";
-import ShowList from "../components/ShowList.jsx";
-import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
+import ShowList from "../components/ShowList.jsx";
+import { searchForShow } from "../helpers/showsHelper";
 
 function Search() {
   const params = useParams();
@@ -17,7 +18,7 @@ function Search() {
         const shows = await searchForShow(params.searchText);
         setSearchResults(shows);
       } catch (err) {
-        setError("Failed to fetch shows");
+        setError(err.message || "Failed to fetch shows");
       } finally {
         setLoading(false);
       }
@@ -27,7 +28,7 @@ function Search() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
         <div className="flex items-center justify-center min-h-[50vh]">
           <div className="text-center">
             <div className="relative">
@@ -46,7 +47,7 @@ function Search() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
         <div className="flex items-center justify-center min-h-[50vh]">
           <div className="text-center p-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
@@ -81,12 +82,12 @@ function Search() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
       {/* Header Section */}
       <div className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center space-x-3">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
                 <svg
                   className="w-6 h-6 text-primary"
