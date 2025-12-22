@@ -3,9 +3,11 @@ import Home from "./pages/Home.jsx";
 import Search from "./pages/Search.jsx";
 import Upcoming from "./pages/Upcoming.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx";
 import ShowPage from "./pages/ShowPage.jsx";
 import Favorites from "./pages/Favorites.jsx";
 import Layout from "./components/Layout.jsx";
+import { LoadingSpinner } from "./components/UIComponents.jsx";
 import {
   homeLoader,
   searchLoader,
@@ -18,7 +20,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement: <NotFound />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -59,7 +61,9 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <RouterProvider router={router} fallbackElement={<LoadingSpinner />} />
+  );
 }
 
 export default App;

@@ -1,6 +1,6 @@
-import { Outlet, useNavigation } from "react-router-dom";
 import Header from "./Header.jsx";
-import LoadingSpinner from "./LoadingSpinner.jsx";
+import { LoadingSpinner } from "./UIComponents.jsx";
+import { Outlet, useNavigation } from "react-router-dom";
 
 function Layout() {
   const navigation = useNavigation();
@@ -10,7 +10,7 @@ function Layout() {
       <Header />
       <main>
         {navigation.state === "loading" ? (
-          <LoadingSpinner title="Loading..." />
+          <LoadingSpinner message="Loading..." />
         ) : (
           <Outlet />
         )}

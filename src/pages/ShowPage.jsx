@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useParams, useLoaderData } from "react-router-dom";
+import { useParams, useLoaderData, useNavigate } from "react-router-dom";
 
 function ShowPage() {
   const { showID } = useParams();
   const show = useLoaderData();
+  const navigate = useNavigate();
 
   const existingFavorites = JSON.parse(
     localStorage.getItem("favorites") || "[]"
@@ -36,6 +37,25 @@ function ShowPage() {
     <div className="min-h-screen bg-gray-50 pb-12">
       {/* Hero Section with Backdrop */}
       <div className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden bg-gray-900">
+        <button
+          onClick={() => navigate(-1)}
+          className="absolute top-8 left-4 md:left-8 z-20 flex items-center px-4 py-2 bg-black/30 hover:bg-black/50 text-white rounded-full backdrop-blur-md border border-white/10 transition-all duration-200 group cursor-pointer"
+        >
+          <svg
+            className="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform duration-200"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg>
+          Back
+        </button>
         {heroImage && (
           <>
             <div
