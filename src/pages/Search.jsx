@@ -1,85 +1,10 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-
+import { useLoaderData, useParams, useNavigate } from "react-router-dom";
 import ShowList from "../components/ShowList.jsx";
-import { searchForShow } from "../helpers/showsHelper";
 
 function Search() {
-  const params = useParams();
-  const [searchResults, setSearchResults] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchResults = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const shows = await searchForShow(params.searchText);
-        setSearchResults(shows);
-      } catch (err) {
-        setError(err.message || "Failed to fetch shows");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchResults();
-  }, [params.searchText]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
-        <div className="flex items-center justify-center min-h-[50vh]">
-          <div className="text-center">
-            <div className="relative">
-              <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-              <div className="absolute inset-0 w-16 h-16 border-2 border-primary/20 rounded-full mx-auto"></div>
-            </div>
-            <h2 className="text-xl font-semibold text-gray-700 mb-2">
-              Searching for &ldquo;{params.searchText}&rdquo;
-            </h2>
-            <p className="text-gray-500">Finding the best matches for you</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
-        <div className="flex items-center justify-center min-h-[50vh]">
-          <div className="text-center p-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
-              <svg
-                className="w-8 h-8 text-red-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
-              Search failed
-            </h2>
-            <p className="text-gray-600 mb-4">{error}</p>
-            <button
-              onClick={() => window.location.reload()}
-              className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-200"
-            >
-              Try Again
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const { searchText } = useParams();
+  const searchResults = useLoaderData();
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
@@ -110,8 +35,8 @@ function Search() {
               </h1>
               <p className="text-gray-600 mt-1">
                 {searchResults.length > 0
-                  ? `Found ${searchResults.length} shows for "${params.searchText}"`
-                  : `No results found for "${params.searchText}"`}
+                  ? `Found ${searchResults.length} shows for "${searchText}"`
+                  : `No results found for "${searchText}"`}
               </p>
             </div>
           </div>
@@ -144,8 +69,8 @@ function Search() {
             </h3>
             <p className="text-gray-500 mb-6 max-w-md mx-auto">
               We couldn&apos;t find any shows matching &ldquo;
-              {params.searchText}&rdquo;. Try searching for something else or
-              check the spelling.
+              {searchText}&rdquo;. Try searching for something else or check the
+              spelling.
             </p>
             <div className="space-y-3">
               <p className="text-sm font-medium text-gray-700">
@@ -161,10 +86,8 @@ function Search() {
                 ].map((suggestion) => (
                   <button
                     key={suggestion}
-                    onClick={() =>
-                      (window.location.href = `/search/${suggestion}`)
-                    }
-                    className="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:border-gray-300 transition-colors duration-200"
+                    onClick={() => navigate(`/search/${suggestion}`)}
+                    className="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:border-gray-300 transition-colors duration-200 cursor-pointer"
                   >
                     {suggestion}
                   </button>

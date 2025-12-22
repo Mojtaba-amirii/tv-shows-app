@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function Header() {
@@ -22,56 +22,63 @@ function Header() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   }
 
+  const navLinkClass = ({ isActive }) =>
+    `px-4 py-2 rounded-lg transition-all duration-200 font-medium ${
+      isActive
+        ? "bg-white/20 text-white shadow-sm"
+        : "text-white/90 hover:text-white hover:bg-white/10"
+    }`;
+
+  const mobileNavLinkClass = ({ isActive }) =>
+    `block px-4 py-2 rounded-lg transition-all duration-200 font-medium ${
+      isActive
+        ? "bg-white/20 text-white shadow-sm"
+        : "text-white/90 hover:text-white hover:bg-white/10"
+    }`;
+
   return (
     <header className="bg-linear-to-r from-primary via-primary/90 to-secondary shadow-lg sticky top-0 z-50 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 hover:bg-white/20 transition-all duration-300">
-              <div className="w-8 h-8 bg-linear-to-br from-white to-gray-100 rounded-md flex items-center justify-center">
-                <svg
-                  className="w-5 h-5 text-primary"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M2 6a2 2 0 012-2h6l2 2h6a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM5 8a1 1 0 011-1h1a1 1 0 110 2H6a1 1 0 01-1-1zm6 0a1 1 0 011-1h3a1 1 0 110 2h-3a1 1 0 01-1-1z" />
-                </svg>
+            <NavLink to="/" className="flex items-center group">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 group-hover:bg-white/20 transition-all duration-300">
+                <div className="w-8 h-8 bg-linear-to-br from-white to-gray-100 rounded-md flex items-center justify-center">
+                  <svg
+                    className="w-5 h-5 text-primary"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M2 6a2 2 0 012-2h6l2 2h6a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM5 8a1 1 0 011-1h1a1 1 0 110 2H6a1 1 0 01-1-1zm6 0a1 1 0 011-1h3a1 1 0 110 2h-3a1 1 0 01-1-1z" />
+                  </svg>
+                </div>
               </div>
-            </div>
-            <h1 className="ml-3 text-xl font-bold text-white hidden sm:block">
-              TV Shows
-            </h1>
+              <h1 className="ml-3 text-xl font-bold text-white hidden sm:block tracking-tight">
+                TV Shows
+              </h1>
+            </NavLink>
           </div>
 
           {/* Navigation */}
           <nav className="hidden md:flex space-x-1">
-            <Link
-              to="/"
-              className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 font-medium"
-            >
+            <NavLink to="/" className={navLinkClass} end>
               Home
-            </Link>
-            <Link
-              to="/favorites"
-              className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 font-medium"
-            >
+            </NavLink>
+            <NavLink to="/favorites" className={navLinkClass}>
               Favorites
-            </Link>
-            <Link
-              to="/upcoming"
-              className="px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 font-medium"
-            >
+            </NavLink>
+            <NavLink to="/upcoming" className={navLinkClass}>
               Upcoming
-            </Link>
+            </NavLink>
           </nav>
 
           {/* Search */}
           <div className="flex items-center">
-            <div className="relative">
+            <div className="relative group">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg
-                  className="h-5 w-5 text-gray-400"
+                  className="h-5 w-5 text-gray-300 group-focus-within:text-white transition-colors duration-200"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -88,17 +95,17 @@ function Header() {
                 type="text"
                 value={searchValue}
                 onChange={handleSearch}
-                className="w-full sm:w-64 pl-10 pr-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg placeholder-white/60 text-white focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-transparent transition-all duration-200"
+                className="w-full sm:w-64 pl-10 pr-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg placeholder-white/60 text-white focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-transparent focus:bg-white/20 transition-all duration-200"
                 placeholder="Search shows..."
                 aria-label="Search shows"
               />
               {searchValue && (
                 <button
                   onClick={() => setSearchValue("")}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
                 >
                   <svg
-                    className="h-4 w-4 text-white/60 hover:text-white"
+                    className="h-4 w-4 text-white/60 hover:text-white transition-colors duration-200"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -116,10 +123,11 @@ function Header() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden ml-4">
             <button
               onClick={toggleMobileMenu}
-              className="p-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200"
+              className="p-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white/30"
+              aria-label="Toggle mobile menu"
             >
               {isMobileMenuOpen ? (
                 <svg
@@ -156,29 +164,30 @@ function Header() {
 
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-primary/95 backdrop-blur-sm border-t border-white/20">
+          <div className="md:hidden bg-primary/95 backdrop-blur-sm border-t border-white/20 absolute left-0 right-0 shadow-xl animate-in slide-in-from-top-2 duration-200">
             <div className="px-4 py-3 space-y-1">
-              <Link
+              <NavLink
                 to="/"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 font-medium"
+                className={mobileNavLinkClass}
+                end
               >
                 Home
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 to="/favorites"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 font-medium"
+                className={mobileNavLinkClass}
               >
                 Favorites
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 to="/upcoming"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 font-medium"
+                className={mobileNavLinkClass}
               >
                 Upcoming
-              </Link>
+              </NavLink>
             </div>
           </div>
         )}

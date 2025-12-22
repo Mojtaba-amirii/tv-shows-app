@@ -1,98 +1,8 @@
-import { useState, useEffect } from "react";
-
+import { useLoaderData } from "react-router-dom";
 import ShowList from "../components/ShowList.jsx";
-import { searchForShow } from "../helpers/showsHelper";
 
 function Upcoming() {
-  const [upcomingShows, setUpcomingShows] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchUpcomingShows = async () => {
-      try {
-        // Since we don't have a direct upcoming endpoint, let's fetch some popular ongoing series
-        const popularShows = [
-          "The Bear",
-          "House of the Dragon",
-          "Wednesday",
-          "Stranger Things",
-          "The Last of Us",
-        ];
-        const showPromises = popularShows.map((show) => searchForShow(show));
-        const results = await Promise.all(showPromises);
-
-        // Flatten the results and take the first show from each search
-        const shows = results
-          .filter((result) => result && result.length > 0)
-          .map((result) => result[0])
-          .filter((show) => show !== null);
-
-        setUpcomingShows(shows);
-      } catch (err) {
-        setError(err.message || "Failed to fetch upcoming shows");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUpcomingShows();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
-        <div className="flex items-center justify-center min-h-[50vh]">
-          <div className="text-center">
-            <div className="relative">
-              <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-              <div className="absolute inset-0 w-16 h-16 border-2 border-primary/20 rounded-full mx-auto"></div>
-            </div>
-            <h2 className="text-xl font-semibold text-gray-700 mb-2">
-              Finding upcoming shows...
-            </h2>
-            <p className="text-gray-500">Discovering what&apos;s coming next</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
-        <div className="flex items-center justify-center min-h-[50vh]">
-          <div className="text-center p-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
-              <svg
-                className="w-8 h-8 text-red-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
-              Failed to load upcoming shows
-            </h2>
-            <p className="text-gray-600 mb-4">{error}</p>
-            <button
-              onClick={() => window.location.reload()}
-              className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-200"
-            >
-              Try Again
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const upcomingShows = useLoaderData();
 
   return (
     <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
@@ -194,7 +104,7 @@ function Upcoming() {
 
           <ShowList shows={upcomingShows} />
 
-          {upcomingShows.length === 0 && !loading && !error && (
+          {upcomingShows.length === 0 && (
             <div className="text-center py-12">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
                 <svg
