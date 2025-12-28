@@ -21,6 +21,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout />,
     errorElement: <ErrorPage />,
+    hydrateFallbackElement: <LoadingSpinner />,
     children: [
       {
         index: true,
