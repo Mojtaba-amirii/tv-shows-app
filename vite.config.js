@@ -14,17 +14,4 @@ export default defineConfig({
     assetsDir: "assets",
     sourcemap: true,
   },
-  esbuild: {
-    loader: "jsx",
-    include: /src\/.*\.[tj]sx?$/,
-    exclude: [],
-  },
-  optimizeDeps: {
-    esbuildOptions: {
-      loader: {
-        ".js": "jsx",
-        ".ts": "tsx",
-      },
-    },
-  },
 });
