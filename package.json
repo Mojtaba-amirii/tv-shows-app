@@ -11,10 +11,10 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.2.1",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "react-router-dom": "^7.13.1"
+    "@tailwindcss/vite": "^4.2.2",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-router-dom": "^7.14.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",
@@ -29,11 +29,11 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
-    "jsdom": "^29.0.0",
-    "postcss": "^8.5.8",
-    "tailwindcss": "^4.2.1",
-    "vite": "^8.0.0",
-    "vitest": "^4.1.0"
+    "jsdom": "^29.0.2",
+    "postcss": "^8.5.9",
+    "tailwindcss": "^4.2.2",
+    "vite": "^8.0.8",
+    "vitest": "^4.1.4"
   },
   "eslintConfig": {
     "extends": [
